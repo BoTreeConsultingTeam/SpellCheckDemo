@@ -3,10 +3,10 @@ class HomesController < ApplicationController
   end
 
   def get_suggestion
-    # begin
+    begin
       @suggestion = GetCorrectedText.new.call(params[:text], params[:mode])
-    # rescue => e
-    #   flash[:error] = e.message
-    # end
+    rescue => e
+      flash[:error] = e.message
+    end
   end
 end

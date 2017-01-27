@@ -1,7 +1,7 @@
-<h1>Spell check</h1>
+<h3>Spell check</h3>
+</br></br>
 <div class="row">
-  <div class="col-md-2"></div>
-    <div class="col-md-4">
+  <div class="col-md-6">
     <div class="form-group">
       <label for="exampleInputEmail1">Mode</label>
       <%= select_tag "mode", "<option value='spell'>Spell</option><option value='proof'>Proof</option>".html_safe, title: "Mode", class: "form-control" %>
@@ -12,14 +12,15 @@
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Text to be checked</label>
-      <%= text_area_tag "text", @text, title: "Enter the text to be checked", placeholder: "Enter the text to be checked", class: "form-control" %>
+      <%= text_area_tag "text", @text, title: "Enter the text to be checked", placeholder: "Enter the text to be checked", class: "form-control", rows: 4 %>
     </div>
     <%= button_tag "Go", title: "Check suggestions", class: "btn-primary", id: "check"   %>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
     <div class="form-group">
       <label for="exampleInputEmail1">Correct Text</label>
-    <%= text_area_tag "suggestion", @suggestion, placeholder: "Result", disabled: true, class: "form-control"  %>
+    <%= text_area_tag "suggestion", @suggestion, placeholder: "Result", disabled: true, class: "form-control", rows: 15  %>
     </div>
   </div>
 </div>
@@ -35,6 +36,7 @@
   }
 
   $('#check').click(function(){
+    $('suggestion').text('');
     data = {};
     send_selected = $('#text_to_Send').val() == 1;
     data['mode'] = $('#mode').val();

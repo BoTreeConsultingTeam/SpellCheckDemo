@@ -1,9 +1,9 @@
 Spelling Check
 ================
 
-This application is created to Spelling correction using API [Bing Spell Check API](
+Application for Spell check and correction using [Microsoft Bing Spell Check API](
 https://www.microsoft.com/cognitive-services/en-us/bing-spell-check-api)
-
+See the live demo [here](https://correct-spell.herokuapp.com/)
 
 Problems? Issues?
 -----------

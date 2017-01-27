@@ -1,0 +1,55 @@
+<h1>Spell check</h1>
+<div class="row">
+  <div class="col-md-2"></div>
+    <div class="col-md-4">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Mode</label>
+      <%= select_tag "mode", "<option value='spell'>Spell</option><option value='proof'>Proof</option>".html_safe, title: "Mode", class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Text To check</label>
+      <%= select_tag "text_to_Send", "<option value='1'>Check All Text</option><option value='2'>Check selected Text</option>".html_safe, title: "Text To Be checked", class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Text to be checked</label>
+      <%= text_area_tag "text", @text, title: "Enter the text to be checked", placeholder: "Enter the text to be checked", class: "form-control" %>
+    </div>
+    <%= button_tag "Go", title: "Check suggestions", class: "btn-primary", id: "check"   %>
+    </div>
+    <div class="col-md-4">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Correct Text</label>
+    <%= text_area_tag "suggestion", @suggestion, placeholder: "Result", disabled: true, class: "form-control"  %>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  function getInputSelection(elem){
+   if(typeof elem != "undefined"){
+    s=elem[0].selectionStart;
+    e=elem[0].selectionEnd;
+    return elem.val().substring(s, e);
+   }else{
+    return '';
+   }
+  }
+
+  $('#check').click(function(){
+    data = {};
+    send_selected = $('#text_to_Send').val() == 1;
+    data['mode'] = $('#mode').val();
+    text = send_selected ? $('#text').val() : getInputSelection($("#text"));
+    data['text'] = text;
+    if(data['text']){
+      $.ajax({
+        url: '<%=  homes_get_suggestion_path %>',
+        data: data,
+        method: 'post'});
+    }
+    else{
+      text_to_Send = send_selected ? "enter" : "select";
+      alert('please '+ text_to_Send +' text for check');
+      return false;
+    }
+  })
+</script>

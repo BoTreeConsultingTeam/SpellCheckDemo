@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Spell Check Demo" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Spell Check: correct spelling mistakes and grammer" %>">
+    <meta content='1227770719' property='fb:admins'>
+    <meta content="systemlord.me" name="author" >
+    <meta property="og:title" content="Spell Check: correct spelling mistakes and grammer">
+    <meta name="twitter:title" content="Spell Check: correct spelling mistakes and grammer">
+    <meta name="twitter:description" content="Spell Check: correct spelling mistakes and grammer">
+    <meta content="website" property="og:type">
+    <meta content="https://correct-spell.herokuapp.com/" property="og:url" >
+    <meta content=("correct-spell.herokuapp.com India") property="og:site_name" >
+    <meta content="en_IN" property="og:locale">
+    <meta content="correct Spelling and grammer mistakes" property="og:description">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+  <a class="github-fork-ribbon" href="https://github.com/ManojParmar-BTC/SpellCheckDemo" title="Fork me on GitHub">Fork me on GitHub</a>
+    <header>
+      <% #render 'layouts/navigation' %>
+    </header>
+    <main role="main">
+       <%= render 'layouts/messages' %>
+       <%= yield %>
+    </main>
+    <footer>
+      <%= render 'layouts/footer' %>
+    </footer>
+  </body>
+</html>
